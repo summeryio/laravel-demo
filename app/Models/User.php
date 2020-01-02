@@ -42,4 +42,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * $this->attributes['email'] 获取到用户的邮箱
+     * 用 trim 方法剔除邮箱的前后空白内容
+     * 用 strtolower 方法将邮箱转换为小写
+     * 将小写的邮箱使用 md5 方法进行转码
+     */
+    public function gravatar($size = '100') {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+
+        return "http://www.gravatar.com/avatar/$hash?s=$size";
+    }
 }
