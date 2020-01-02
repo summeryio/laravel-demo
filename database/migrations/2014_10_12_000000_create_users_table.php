@@ -10,6 +10,7 @@ class CreateUsersTable extends Migration
      * Run the migrations.
      *
      * @return void
+     * 当我们运行迁移时，up 方法会被调用；
      */
     public function up()
     {
@@ -17,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable(); // Email 验证时间，可以为空
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->rememberToken(); // 保存『记住我』
+            $table->timestamps(); // 创建了一个 created_at 和一个 updated_at 字段
         });
     }
 
@@ -28,6 +29,7 @@ class CreateUsersTable extends Migration
      * Reverse the migrations.
      *
      * @return void
+     * 当我们回滚迁移时，down 方法会被调用。
      */
     public function down()
     {
