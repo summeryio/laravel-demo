@@ -84,4 +84,11 @@ class UsersController extends Controller
         
         return view('users.index', compact('users'));
     }
+
+    public function destroy(User $user) {
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '删除用户成功！');
+        return back();
+    }
 }
