@@ -12,6 +12,9 @@
                     {{-- 第二个参数： 传递用户数据 --}}
                     @include('shared._user_info', ['user' => $user])
                 </section>
+                @if(Auth::check())
+                    @include('users._follow_form')
+                @endif
                 <section class="status">
                     @if ($statuses->count() > 0)
                       <ul class="list-unstyled">
